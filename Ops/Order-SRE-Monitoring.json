@@ -190,7 +190,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "exemplar": true,
-          "expr": "30 * 24 * 60 * ($error_budget - (sum(rate($service_requests_error_count[30d]) or vector(0)) / sum(rate($service_requests_total_count[30d]) or vector(0))) / 500)",
+          "expr": "clamp_min(30 * 24 * 60 * ($error_budget - (sum(rate($service_requests_error_count[30d]) or vector(0)) / sum(rate($service_requests_total_count[30d]) or vector(0))) / $correction_factor), 0)",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -272,7 +272,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "exemplar": true,
-          "expr": "1 - sum(rate($service_requests_error_count[30d]) or vector(0)) / sum(rate($service_requests_total_count[30d]) or vector(0))",
+          "expr": "clamp_min(1 - sum(rate($service_requests_error_count[30d]) or vector(0)) / sum(rate($service_requests_total_count[30d]) or vector(0)), 0)",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
