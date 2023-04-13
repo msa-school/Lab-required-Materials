@@ -23,8 +23,8 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 11222,
   "graphTooltip": 0,
-  "id": 12,
-  "iteration": 1680685547500,
+  "id": 9,
+  "iteration": 1681362270653,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -155,7 +155,7 @@
               }
             ]
           },
-          "unit": "h"
+          "unit": "m"
         },
         "overrides": []
       },
@@ -190,7 +190,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "exemplar": true,
-          "expr": "30 * 24 * ($error_budget - sum(rate($service_requests_error_count[30d]) or vector(0)) / sum(rate($service_requests_total_count[30d]) or vector(0)))",
+          "expr": "30 * 24 * 60 * ($error_budget - (sum(rate($service_requests_error_count[30d]) or vector(0)) / sum(rate($service_requests_total_count[30d]) or vector(0))) / 500)",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -577,7 +577,7 @@
       }
     }
   ],
-  "refresh": false,
+  "refresh": "10s",
   "schemaVersion": 33,
   "style": "dark",
   "tags": [],
@@ -608,26 +608,33 @@
       {
         "hide": 2,
         "name": "service_slo_target",
-        "query": "99",
+        "query": "95",
         "skipUrlSync": false,
         "type": "constant"
       },
       {
         "hide": 2,
         "name": "error_budget",
-        "query": "0.01",
+        "query": "0.001389",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "hide": 2,
+        "name": "correction_factor",
+        "query": "100",
         "skipUrlSync": false,
         "type": "constant"
       }
     ]
   },
   "time": {
-    "from": "2023-01-25T07:34:04.518Z",
-    "to": "2023-05-17T07:34:04.518Z"
+    "from": "now-1h",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
-      "3s",
+      "5s",
       "10s",
       "20s",
       "1m",
@@ -647,8 +654,8 @@
     ]
   },
   "timezone": "",
-  "title": "SLO Dashboard",
+  "title": "12st Order SRE Dashboard",
   "uid": "Xpn7QdY4z",
-  "version": 4,
+  "version": 2,
   "weekStart": ""
 }
