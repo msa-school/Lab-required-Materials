@@ -32,7 +32,7 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: ab-test-routing
+  name: ab-test-path-routing
   namespace: ab-test  
 spec:
   hosts:
