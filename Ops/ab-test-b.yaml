@@ -18,5 +18,6 @@ spec:
       containers:
         - name: order
           image: apexacme/order:v2-b
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
