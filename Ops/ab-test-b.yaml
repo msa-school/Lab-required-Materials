@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: order-a
+  name: order-b
   labels:
-    app: order-a
+    app: order-b
 spec:
   replicas: 1
   selector:
@@ -13,7 +13,7 @@ spec:
     metadata:
       labels:
         app: order
-        ver: a
+        ver: b
     spec:
       containers:
         - name: order
